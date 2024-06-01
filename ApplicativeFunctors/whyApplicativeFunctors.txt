@@ -1,0 +1,21 @@
+So far, we have focused on mapping functions that take only one parameter
+over functors. But what happens when we map a function that takes two 
+parameters over a functor?
+e.g.
+    ghci> Just 8 + Just 9
+    ghci> will display an error bcz in simple functor we only apply operations on one wrapped value
+          BUT in this scenerio we have to apply an operation on two wrapped values
+
+Applicative Functors applies operation on two functors (Wrapped Values)
+Meet the Applicative type class, in the Control.Applicative module
+e.g. 
+    ghci> Just 8 + Just 9
+    ghci> Just 17
+
+The class definition of Applicative Functor is: 
+    class (Functor f) => Applicative f where
+    pure :: a-> f a
+    (<*>) :: f (a-> b)-> f a-> f b
+
+Now let's Create our own definition of applicative functors in the codes
+

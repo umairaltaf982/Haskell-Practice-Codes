@@ -1,4 +1,5 @@
 Functors are used to apply function or an operation on wrapped values
+Maps a Functions that takes one parameter(Wrapped value) over a functor
 It is a type class and its definition is built-in 
 e.g. 
     data shape a = Circle a | Rect a a
@@ -7,7 +8,7 @@ e.g.
     bcz 'Rect 3 5' is the wrapped value and '+' is a operation
     to get rid of these problems we use functors
 
-Functor's Function Type:
+The class definition for Functor is:
     class Functor f where
     fmap :: (a -> b) -> f a -> f b
 
