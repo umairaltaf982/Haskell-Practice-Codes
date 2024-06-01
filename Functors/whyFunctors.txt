@@ -1,0 +1,45 @@
+Functors are used to apply function or an operation on wrapped values
+It is a type class and its definition is built-in 
+e.g. 
+    data shape a = Circle a | Rect a a
+    ghci> (Rect 3 5) + 3
+    ghci> will display an error
+    bcz 'Rect 3 5' is the wrapped value and '+' is a operation
+    to get rid of these problems we use functors
+
+Functor's Function Type:
+    class Functor f where
+    fmap :: (a -> b) -> f a -> f b
+
+By-Default Functor definition is for 
+    1- maybe
+    2- either
+    3- list
+
+Functor Laws:
+    1- The first functor law states that if we map the id function over a functor
+       value, the functor value that we get back should be the same as the original
+       functor value. Written a bit more formally, it means that fmap id = id.
+       e.g. 
+           ghci> fmap id (Just 3)
+                 Just 3
+           ghci> id (Just 3)
+                 Just 3
+        
+        Looking at the implementation of fmap for Maybe, for example, we can
+        figure out why the first functor law holds:
+
+            instance Functor Maybe where
+            fmap f (Just x) = Just (f x)
+            fmap f Nothing = Nothing
+
+    2-  The second law says that composing two functions and then mapping the resulting
+        function over a functor should be the same as first mapping one function
+        over the functor and then mapping the other one. Formally written, that means
+        fmap (f . g) = fmap f . fmap g. Or to write it in another way, for any functor
+        value x, the following should hold: 
+
+            fmap (f . g) x = fmap f (fmap g x).
+
+
+Now lets try to break these laws by creating our own functors
