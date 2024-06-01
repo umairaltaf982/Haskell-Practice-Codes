@@ -1,0 +1,25 @@
+ This type class is for types whose values can be combined together with a binary operation.
+ Allows to apply a function that expect an unwrapped value to unwrapped value
+ lets tke an example of a function 'half'
+ e.g.
+    half :: Int -> Maybe
+    half x = if even x then Just x `div` 2 else Nothing
+
+    ghci> half 14
+        > Just 7
+    ghci> half 15
+        > Nothing
+    
+it is going great but what if we do:
+    ghci> half Just 14
+        > will give an error
+    bcz half function is expecting Int but we have passed the function named Just 
+    To run for this scenerio if we use >>= that is called binding operator used for function
+    it extract the value from the function and pass it to half (or another function)
+    e.g.
+        ghci> Just 14 >>= half
+            > 7
+        ghci> Just 3 >>= half
+            > Nothing
+
+Now lets do some code Examples
