@@ -1,4 +1,3 @@
--- Function to check if a number is an Armstrong number
 isArmstrong :: Int -> Bool
 isArmstrong n = n == sumOfPowers
   where
